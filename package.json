@@ -1,0 +1,20 @@
+{
+  "name": "wallet-receiving-example",
+  "version": "1.0.0",
+  "description": "An example project for running a ILP components for a digital wallet that wants to accept ILP payments",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ilp-connector": "latest",
+    "ilp-plugin-btp": "latest",
+    "ilp-plugin-mini-accounts": "^4.2.0",
+    "ilp-protocol-spsp": "^3.0.0",
+    "ilp-protocol-stream": "latest",
+    "koa": "latest",
+    "pino": "^5.13.4"
+  }
+}

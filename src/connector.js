@@ -2,7 +2,7 @@ const Connector = require('ilp-connector')
 
 const connector = Connector.createApp({
   spread: 0,
-  backend: 'one-to-one',
+  backend: 'ecb-plus-xrp',
   initialConnectTimeout: 60000,
   adminApi: true,
   adminApiPort: 7701,
@@ -23,8 +23,8 @@ const connector = Connector.createApp({
       sendRoutes: false,
       receiveRoutes: false,
       plugin: 'ilp-plugin-btp',
-      assetCode: 'XRP',
-      assetScale: 9,
+      assetCode: 'EUR',
+      assetScale: 2,
       options: {
         listener: {
           port: 7769,
@@ -37,8 +37,8 @@ const connector = Connector.createApp({
       sendRoutes: false,
       receiveRoutes: false,
       plugin: 'ilp-plugin-mini-accounts',
-      assetCode: 'XRP',
-      assetScale: 9,
+      assetCode: 'USD',
+      assetScale: 2,
       options: {
         port: 9000
       }

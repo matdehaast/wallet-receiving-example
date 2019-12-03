@@ -3,6 +3,7 @@ const { Server } = require('ilp-protocol-stream')
 const Koa = require('koa')
 const crypto = require('crypto')
 const createLogger = require('pino')
+const ILDCP = require('ilp-protocol-ildcp')
 
 const logger = createLogger()
 
@@ -15,6 +16,8 @@ async function startServer () {
   logger.info(`Connecting to connector..`)
   await plugin.connect()
   logger.info(`Connected to Connector`)
+
+  const details = await ILDCP.fetch(plugin.sendData.bind(plugin))
 
   const streamServer = new Server({
     plugin: plugin,
@@ -36,13 +39,16 @@ async function startServer () {
       stream.setReceiveMax(10000000000000)
 
       stream.on('money', amount => {
-        logger.info('Received packet for amount ' + amount)
-
         // TODO Add business logic to credit users account for the amount received
         // accountsService.credit(account, amount)
       })
 
+      stream.on('end', () => {
+        console.log(`Received ${stream.totalReceived*Math.pow(10, -details.assetScale)} ${details.assetCode}`)
+      })
+
     })
+
   })
 
   await streamServer.listen()
